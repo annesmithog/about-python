@@ -4,13 +4,16 @@
 
 - [前提](#前提)
 - [変数](#変数)
+- [定数](#定数)
 - [制御構造](#制御構造)
+- [型](#型)
 - [式](#式)
 - [キャスト](#キャスト)
 - [コンテナ](#コンテナ)
 - [列挙型](#列挙型)
 - [関数](#関数)
 - [オブジェクト指向](#オブジェクト指向)
+- [例外](#例外)
 - [Extra](#extra)
 
 [⬆︎目次トップに戻る](#目次)
@@ -35,11 +38,21 @@ Comment 2
 
 ## 変数
 
-**変数** - 一般的な変数です。定数は使用できません。
+一般的な変数です。
 
 ```py
 name = "Anne"
 age = 21
+```
+
+[⬆︎目次に戻る](#目次)
+
+## 定数
+
+Pythonでは、**定数は言語仕様として存在しません**が、慣例として大文字変数を使用します。
+
+```py
+PI = 3.14
 ```
 
 [⬆︎目次に戻る](#目次)
@@ -106,6 +119,28 @@ match score:
 
 [⬆︎目次に戻る](#目次)
 
+## 型
+
+**型の確認**
+```py
+x = 10
+print(type(x))  # <class 'int'>
+```
+
+**標準データ型**
+```py
+print(type(1))              # <class 'int'>
+print(type(1.1))            # <class 'float'>
+print(type("aa"))           # <class 'str'>
+print(type(True))           # <class 'bool'>
+print(type([10, 20, 30]))   # <class 'list'>
+print(type((10, 20)))       # <class 'tuple'>
+print(type({"A":1, "B":2})) # <class 'dict'>
+print(type({"aa", "bb"}))   # <class 'set'>
+```
+
+[⬆︎目次に戻る](#目次)
+
 ## 式
 
 **条件式** - `A if B else C`, BであればA、そうでなければCを返します。
@@ -128,7 +163,7 @@ x = {1, 2, 3}
 y = {3, 4, 5}
 print(x | y)            # 和集合: {1, 2, 3, 4, 5}
 print(x & y)            # 積集合: {3}
-print(x ^ y)            # 対象差: {1, 2, 4, 5}
+print(x ^ y)            # 対称差: {1, 2, 4, 5}
 print({1, 2, 3} <= x)   # {1, 2, 3}がxの部分集合か: True
 print({1, 2, 4} <= x)   # {1, 2, 4}がxの部分集合か: False
 ```
@@ -194,11 +229,6 @@ tpl2 = tuple()
 tpl3 = 10, 20, 30           # (10, 20, 30)
 tpl4 = (10, 20, 30)         # (10, 20, 30)
 tpl5 = ("ten", 20, 30)      # ('ten', 20, 30)
-
-# 出力例
-tpl = (10, 20, 30)
-for t in tpl:
-    print(t)
 ```
 
 **辞書型** - データを構造化したい場合に用いるコンテナです。
@@ -225,11 +255,6 @@ st2 = {"ONE", "TWO", "THREE"}   # {'TWO', 'ONE', 'THREE'}
 st3 = set([10, 20, 30])         # {10, 20, 30}
 st4 = set({10, 20, 30})         # {10, 20, 30}
 st5 = set("abc")                # {'c', 'b', 'a'}
-
-# 出力例
-st = {10, 20, 30}
-for x in sorted(st):
-    print(x)
 
 # 内包表記
 nums = {v for v in range(5)}
@@ -297,12 +322,12 @@ if Outfielder.LEFT.value == 7:
 
 **Flag** - Enumクラスの機能とビット演算子が使用可能です。
 ```py
-from enum import Flag
+from enum import Flag, auto
 
 class Color(Flag):
-    RED = 1
-    GREEN = 2
-    BLUE = 3
+    RED = auto()
+    GREEN = auto()
+    BLUE = auto()
     PURPLE = RED | BLUE
     WHITE = RED | GREEN | BLUE
 
@@ -488,7 +513,7 @@ Human.greeting()        # こんにちは
 print(Human.greet)      # こんにちは
 ```
 
-**静的メソッド** - 継承クラスでも動作が変わらない場合に用いられます。
+**静的メソッド** - インスタンスやクラスに依存しません。継承クラスでも同じ動作を期待する場合に用いられます。
 ```py
 class Date:
     def __init__(self, date) -> None:
@@ -528,7 +553,7 @@ dog.speak()
 ```
 
 - `__init__(self)` - インスタンス生成時に実行されます。
-- `__del__(self)` - デストラクタです。
+- `__del__(self)` - 破棄したタイミングに実行されます。破棄はGC依存です。
 - `__new__(cls)` - インスタンスを作る前に実行されます。
 - `__repr__(self)` - オブジェクトを表す公式の文字列を計算して返します。基本はデバッグに使用します。
 ```py
@@ -542,9 +567,6 @@ animal = Animal("Dick")
 print(animal)           # Animal(Name: Dick)
 ```
 - `__str__(self)` - `__repr__`みたいなものです。
-- `__add__(self)` - `math.trunc()`の動作
-- `__sub__(self)` - `math.ceil()`の動作
-- `__mul__(self)` - `math.floor()`の動作
 - `__sizeof__(self)` - オブジェクトのサイズを返します。
 
 **インターフェース**
@@ -568,6 +590,30 @@ class Circle(Shape):
     def area(self):
         return self.radius * self.radius * math.pi
 ```
+
+[⬆︎目次に戻る](#目次)
+
+## 例外
+
+`try`・`except`・`finally`
+```py
+try:
+    ans = 1 / 0
+except Exception as e:
+    print(e)        # division by zero
+finally:
+    print("END.")
+```
+
+**例外スロー**
+```py
+try:
+    if 1 == 1:
+        raise
+except Exception as e:
+    print(e)
+```
+
 
 [⬆︎目次に戻る](#目次)
 
