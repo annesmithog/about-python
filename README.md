@@ -15,6 +15,8 @@
 - [オブジェクト指向](#オブジェクト指向)
 - [例外](#例外)
 - [Extra](#extra)
+- [データ構造](#データ構造)
+- [アルゴリズム](#アルゴリズム)
 
 [⬆︎目次トップに戻る](#目次)
 
@@ -200,81 +202,7 @@ x = int('7')    # str to int
 
 ## コンテナ
 
-**リスト(動的配列)** - 要素の変更が可能なコンテナです。
-```py
-# 初期化・宣言
-lst1 = []
-lst2 = list()
-lst3 = ["one", "two", "three"]              # ['one', 'two', 'three']
-lst4 = list(range(3))                       # [0, 1, 2]
-lst5 = list("abc")                          # ['a', 'b', 'c']
-lst6 = [x for x in range(0, 10, 2)]         # [0, 2, 4, 6, 8]
-lst7 = [x for x in range(10) if x % 2 == 1] # [1, 3, 5, 7, 9]
-lst8 = [[10, 20], [30, 40]]                 # [[10, 20], [30, 40]]
-
-# 出力例
-nums = ["one", "two", "three"]
-for num in nums:
-    print(num)
-
-# 内包表記
-nums = [str(v) for v in range(5)]
-```
-
-**タプル** - 要素や要素数の変更が不可能なコンテナです。タプル同士の結合は可能です。使われる場面として、アプリの設定やCSVのレコードデータ保持などが挙げられます。
-```py
-# 初期化・宣言
-tpl1 = ()
-tpl2 = tuple()
-tpl3 = 10, 20, 30           # (10, 20, 30)
-tpl4 = (10, 20, 30)         # (10, 20, 30)
-tpl5 = ("ten", 20, 30)      # ('ten', 20, 30)
-```
-
-**辞書型** - データを構造化したい場合に用いるコンテナです。
-```py
-# 初期化・宣言
-dct1 = {}
-dct2 = dict()
-dct3 = {"one": 1, "two": 2, "three": 3}
-
-# 出力例
-dct = {"one": 1, "two": 2, "three": 3}
-for key, value in dct.items():
-    print(key, value)
-
-# 内包表記
-dct = {str(v): v*10 for v in range(5)}
-```
-
-**セット** - インデックス参照不可能で値が重複しない、高速なコンテナです。
-```py
-# 初期化・宣言
-st1 = set()
-st2 = {"ONE", "TWO", "THREE"}   # {'TWO', 'ONE', 'THREE'}
-st3 = set([10, 20, 30])         # {10, 20, 30}
-st4 = set({10, 20, 30})         # {10, 20, 30}
-st5 = set("abc")                # {'c', 'b', 'a'}
-
-# 内包表記
-nums = {v for v in range(5)}
-```
-
-**不変セット** - 不変のセットです。
-```py
-fst1 = frozenset([10, 20, 30])  # frozenset({10, 20, 30})
-fst2 = frozenset({10, 20, 30})  # frozenset({10, 20, 30})
-fst3 = frozenset("Hi")          # frozenset({'H', 'i'})
-```
-
-**array** - 効率的な数値配列が表現できるコンテナです。`b`: int, `d`: double, `f`: float等
-```py
-from array import array
-
-arr1 = array("b", [0, 1])           # array('b', [0, 1])
-arr2 = array("d", [0.1, 0.2])       # array('d', [0.1, 0.2])
-arr3 = array("f", [0.1, 0.1, 0.2])  # array('f', [0.10000000149011612, 0.10000000149011612, 0.20000000298023224])
-```
+データ構造については[データ構造](#データ構造)の一覧を参照してください。
 
 **イテレータを使う**
 ```py
@@ -614,7 +542,6 @@ except Exception as e:
     print(e)
 ```
 
-
 [⬆︎目次に戻る](#目次)
 
 ## Extra
@@ -638,6 +565,7 @@ except Exception as e:
 - [高速化](/advanced/speedup/README.md)
 - [入力](/advanced/input/README.md)
 ------------------------------------------------------------------------------
+<!-- 
 フレームワーク
 - Pyramid
 - FastAPI
@@ -680,6 +608,56 @@ except Exception as e:
 - OpenCSV
 - Pillow
 - pygame
-------------------------------------------------------------------------------
+------------------------------------------------------------------------------ 
+-->
+
+[⬆︎目次に戻る](#目次)
+
+## データ構造
+
+- [list](/datastructure/list/README.md) - 要素の変更が可能
+- [tuple](/datastructure/tuple/README.md) - 要素や要素数の変更が不可能
+- [dict](/datastructure/dict/README.md) - データを構造化
+- [set](/datastructure/set/README.md) - インデックス参照不可能、値重複なし、高速
+- [frozenset](/datastructure/frozenset/README.md) - 不変のset
+- [array](/datastructure/array/README.md) - 効率的な数値配列が表現できる
+
+[⬆︎目次に戻る](#目次)
+
+## アルゴリズム
+
+探索
+- [線形探索](/src/algorithms/search/linear_search.py) - 配列を先頭から順番に調べて目的の要素を探す
+- [二分探索](/src/algorithms/search/binary_search.py) - ソート済みの配列を二分しながら効率的に要素を探す
+- [指数探索](/src/algorithms/search/exponential_search.py) - ソート済みの配列で範囲を指数的に広げながら二分探索し要素を探す
+- [貪欲法 (例: コイン問題)](/src/algorithms/search/greedy_coin_change.py) - その場で最適な選択を繰り返し解を求める
+--------------------------------------------------------------------------------------------------
+ツリー
+- [幅優先探索 (BFS)](/src/algorithms/tree/bfs.py) - キューを使い、根から近い順に探索する
+- [深さ優先探索 (DFS)](/src/algorithms/tree/dfs.py) - スタックや再帰を使い、できる限り深く探索する
+--------------------------------------------------------------------------------------------------
+<!-- 
+グラフアルゴリズム
+- [BFSを使用した迷路探索](/src/algorithms/graph/bfs_maze.py) - BFSを使い、最短経路を見つける
+- [DFSを使用した迷路探索](/src/algorithms/graph/dfs_maze.py) - DFSを使い、到達可能な経路を見つける
+- [ダイクストラ法](/src/algorithms/graph/dijkstra.py) - 単一の始点から各頂点への最短経路を求める (負の辺がない場合のみ)
+- [ベルマンフォード法](/src/algorithms/graph/bellman_ford.py) - 単一の始点から各頂点への最短経路を求める (負の辺があっても問題ないが、負閉路は不可)
+- [ワーシャル–フロイド法](/src/algorithms/graph/floyd_warshall.py) - 全ての頂点間の最短経路を求める
+- [プリム法](/src/algorithms/graph/prim.py) - 貪欲方で最小全域木を求める
+- [クラスカル法](/src/algorithms/graph/kruskal.py) - 辺が小さい順に選び最小全域木を求める
+- [トポロジカルソート](/src/algorithms/graph/topological_sort.py) - 有向非巡回グラフのノードを依存関係に従って並べる
+--------------------------------------------------------------------------------------------------
+ソート
+- [バブルソート](/src/algorithms/sorting/bubble_sort.py) - 隣り合う要素を比較し、必要に応じて入れ替えを繰り返すソート
+- [選択ソート](/src/algorithms/sorting/selection_sort.py) - 未ソート部分から最小または最大の要素を選び、先頭と交換するソート
+- [挿入ソート](/src/algorithms/sorting/insertion_sort.py) - 適切な位置を見つけて要素を挿入し、部分的に整列させるソート
+- [ヒープソート](/src/algorithms/sorting/heap_sort.py) - ヒープ構造を利用し、効率的に整列させるソート
+- [マージソート](/src/algorithms/sorting/merge_sort.py) - 分割統治法を使用した安定ソート
+- [クイックソート](/src/algorithms/sorting/quick_sort.py) - 分割統治法を使用した不安定だが高速なソート
+- [シェルソート](/src/algorithms/sorting/shell_sort.py) - 挿入ソートを改良し、間隔を縮めながら整列させるソート
+- [カウントソート](/src/algorithms/sorting/counting_sort.py) - 値の範囲が限られている時に有効な非比較ソート
+- [基数ソート](/src/algorithms/sorting/radix_sort.py) - 整数の各桁ごとに処理する安定ソート
+-------------------------------------------------------------------------------------------------- 
+-->
 
 [⬆︎目次に戻る](#目次)
