@@ -22,7 +22,7 @@
 
 ## 前提
 
-**出力** - このリポジトリでは、説明のため出力を多用します。
+**出力** - このリポジトリでは、説明のために出力を多く使用します。
 ```py
 print("Hello")
 ```
@@ -51,7 +51,7 @@ age = 21
 
 ## 定数
 
-Pythonでは、**定数は言語仕様として存在しません**が、慣例として大文字変数を使用します。
+Pythonでは、**定数は言語仕様として存在しません**！！しかし、慣例として大文字変数で表現します。
 
 ```py
 PI = 3.14
@@ -61,7 +61,7 @@ PI = 3.14
 
 ## 制御構造
 
-`if`, `elif`, `else`
+`if`, `elif`, `else` - 条件分岐
 ```py
 num = 0
 
@@ -73,7 +73,7 @@ else:
     print("C")
 ```
 
-`while`
+`while` - 繰り返し
 ```py
 i = 0
 
@@ -82,7 +82,7 @@ while (i < 5):
     i += 1
 ```
 
-`for`
+`for` - ループ処理
 ```py
 nums = [10, 20, 30]
 
@@ -102,9 +102,7 @@ for _ in range(3):  # `_`自体は普通に使える...
     print("Hello")
 ```
 
-`break`・`continue` - ループを抜ける時、forの開始位置に戻る時に使用します。
-
-`match`
+`match` - 条件分岐
 ```py
 score = 5
 
@@ -119,11 +117,15 @@ match score:
         print("Dunno")
 ```
 
+`break` - 繰り返し処理の強制終了
+
+`continue` - 繰り返し処理のスキップ
+
 [⬆︎目次に戻る](#目次)
 
 ## 型
 
-**型の確認**
+`type(x)` - xの型を返す
 ```py
 x = 10
 print(type(x))  # <class 'int'>
@@ -636,7 +638,6 @@ except Exception as e:
 - [幅優先探索 (BFS)](/src/algorithms/tree/bfs.py) - キューを使い、根から近い順に探索する
 - [深さ優先探索 (DFS)](/src/algorithms/tree/dfs.py) - スタックや再帰を使い、できる限り深く探索する
 --------------------------------------------------------------------------------------------------
-<!-- 
 グラフアルゴリズム
 - [BFSを使用した迷路探索](/src/algorithms/graph/bfs_maze.py) - BFSを使い、最短経路を見つける
 - [DFSを使用した迷路探索](/src/algorithms/graph/dfs_maze.py) - DFSを使い、到達可能な経路を見つける
@@ -646,6 +647,7 @@ except Exception as e:
 - [プリム法](/src/algorithms/graph/prim.py) - 貪欲方で最小全域木を求める
 - [クラスカル法](/src/algorithms/graph/kruskal.py) - 辺が小さい順に選び最小全域木を求める
 - [トポロジカルソート](/src/algorithms/graph/topological_sort.py) - 有向非巡回グラフのノードを依存関係に従って並べる
+<!-- 
 --------------------------------------------------------------------------------------------------
 ソート
 - [バブルソート](/src/algorithms/sorting/bubble_sort.py) - 隣り合う要素を比較し、必要に応じて入れ替えを繰り返すソート
