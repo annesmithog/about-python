@@ -5,7 +5,7 @@ class TestExponentialSearch(unittest.TestCase):
     def test_found_element(self):
         arr = [10, 20, 30, 40, 50]
         self.assertEqual(2, exponential_search(arr, 30))
-    
+
     def test_not_found_element(self):
         arr = [10, 20, 30, 40, 50]
         self.assertEqual(-1, exponential_search(arr, 31))

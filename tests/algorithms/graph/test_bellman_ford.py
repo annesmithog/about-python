@@ -1,10 +1,10 @@
-from src.algorithms.graph.bellman_ford import bellman_ford, Edge, NegativeCycleError
+from src.algorithms.graph.bellman_ford import bellman_ford, Edges, NegativeCycleError
 import unittest
 
 class TestBellmanFord(unittest.TestCase):
     def test_simple_graph(self):
         vertices = ["Tokyo", "Shinagawa", "Yokohama", "Omiya"]
-        edges = [
+        edges: Edges = [
             {"u": "Tokyo",     "v": "Shinagawa", "w": 5},
             {"u": "Tokyo",     "v": "Omiya",     "w": 20},
             {"u": "Shinagawa", "v": "Yokohama",  "w": 8},
@@ -17,7 +17,7 @@ class TestBellmanFord(unittest.TestCase):
 
     def test_negative_edge(self):
         vertices = ["A", "B", "C"]
-        edges = [
+        edges: Edges = [
             {"u": "A", "v": "B", "w": 6},
             {"u": "A", "v": "C", "w": 5},
             {"u": "B", "v": "C", "w": -2},
@@ -28,7 +28,7 @@ class TestBellmanFord(unittest.TestCase):
 
     def test_negative_cycle(self):
         vertices = ["X", "Y"]
-        edges = [
+        edges: Edges = [
             {"u": "X", "v": "Y", "w": 1},
             {"u": "Y", "v": "X", "w": -2},
         ]

@@ -1,13 +1,22 @@
 from collections import deque
 
-def bfs(graph: dict[str, list[str]], start: str) -> list[str]:
-    """キューを使い、根から近い順に探索する"""
+Graph = dict[str, list[str]]
+Queue = deque[str]
+
+def bfs(graph: Graph, start: str) -> list[str]:
+    """キューを使用して与えられたノードから近いノードを順に探索し、最短経路を返します。
+    Args:
+        graph (dict[str, list[str]]): 調査するグラフ
+        start (str): スタート地点
+    Returns:
+        list[str]: 最短経路
+    """
     visited: set[str] = set()
-    queue: deque[str] = deque([start])
+    queue: Queue = deque([start])
     order: list[str] = []
 
     visited.add(start)
-    
+
     while queue:
         node: str = queue.popleft()
         order.append(node)

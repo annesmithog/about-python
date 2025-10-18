@@ -1,10 +1,10 @@
-from src.algorithms.graph.dijkstra import dijkstra
+from src.algorithms.graph.dijkstra import dijkstra, Graph
 import unittest
 import math
 
 class TestDijkstra(unittest.TestCase):
     def test_simple_graph(self):
-        graph = {
+        graph: Graph = {
             "Tokyo":     {"Shinagawa": 5, "Ueno": 7},
             "Shinagawa": {"Tokyo": 5, "Yokohama": 8},
             "Ueno":      {"Tokyo": 7, "Omiya": 6},
@@ -18,7 +18,7 @@ class TestDijkstra(unittest.TestCase):
         self.assertEqual(dist["Omiya"], 13)
 
     def test_unreachable_node(self):
-        graph = {
+        graph: Graph = {
             "A": {"B": 1},
             "B": {"A": 2},
             "C": {},

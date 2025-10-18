@@ -7,17 +7,23 @@ class CycleError(Exception):
 Graph = dict[str, list[str]]
 
 def topological_sort(graph: Graph) -> list[str]:
-    """有向非巡回グラフのノードを依存関係に従って並べる"""
+    """有向非巡回グラフのノードを依存関係に従って並べ返します。
+    Args:
+        graph (Graph): グラフ
+    Raises:
+        CycleError: 閉路検出時にスローされる
+    Returns:
+        list[str]: グラフ
+    """
     in_degree: dict[str, int] = {u: 0 for u in graph}
     for u, neighbors in graph.items():
         for v in neighbors:
             in_degree[v] = in_degree.get(v, 0) + 1
 
     queue: deque[str] = deque([node for node, deg in in_degree.items() if deg == 0])
-
     order: list[str] = []
 
-    while queue: 
+    while queue:
         u = queue.popleft()
         order.append(u)
 
@@ -28,5 +34,5 @@ def topological_sort(graph: Graph) -> list[str]:
 
     if len(order) != len(in_degree):
         raise CycleError("閉路あり")
-    
+
     return order

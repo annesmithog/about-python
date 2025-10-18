@@ -18,7 +18,7 @@ class TestBfsMaze(unittest.TestCase):
         ]
         with self.assertRaises(ValueError):
             bfs_maze(maze, 3, 4)
-    
+
     def test_goal_not_exists(self):
         maze = [
             list("S.....")
@@ -30,7 +30,7 @@ class TestBfsMaze(unittest.TestCase):
         maze = [list("")]
         with self.assertRaises(ValueError):
             bfs_maze(maze, 0, 0)
-        
+
     def test_simple_maze(self):
         maze = [
             list("S..#."),

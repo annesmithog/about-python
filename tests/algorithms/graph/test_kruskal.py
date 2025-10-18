@@ -1,9 +1,9 @@
-from src.algorithms.graph.kruskal import kruskal
+from src.algorithms.graph.kruskal import kruskal, Edges
 import unittest
 
 class TestKruskal(unittest.TestCase):
     def test_simple_graph(self):
-        edges = [
+        edges: Edges = [
             (1, "A", "B"),
             (3, "A", "C"),
             (1, "B", "C"),
@@ -17,7 +17,7 @@ class TestKruskal(unittest.TestCase):
         self.assertEqual(total_weight, 6)
 
     def test_graph_with_extra_edges(self):
-        edges = [
+        edges: Edges = [
             (10, "A", "B"),
             (1, "B", "C"),
             (2, "C", "D"),
@@ -30,7 +30,7 @@ class TestKruskal(unittest.TestCase):
         self.assertEqual(total_weight, 13)
 
     def test_graph_with_isolated_vertex(self):
-        edges = [
+        edges: Edges = [
             (1, "A", "B"),
             (2, "B", "C"),
         ]

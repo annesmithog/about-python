@@ -2,12 +2,21 @@ import heapq
 
 Graph = dict[str, dict[str, float]]
 Edge = tuple[float, str, str]
+Visited = set[str]
+Mst = list[tuple[str, str, float]]
+Pq = list[Edge]
 
-def prim(graph: Graph, start: str) -> list[tuple[str, str, float]]:
-    """貪欲方で最小全域木を求める"""
-    mst: list[tuple[str, str, float]] = []
-    visited: set[str] = {start}
-    pq: list[Edge] = []
+def prim(graph: Graph, start: str) -> Mst:
+    """貪欲法で最小全域木を求めて返します。
+    Args:
+        graph (Graph): グラフ
+        start (str): スタート地点
+    Returns:
+        Mst: 最小全域木
+    """
+    mst: Mst = []
+    visited: Visited = {start}
+    pq: Pq = []
 
     for v, w in graph[start].items():
         heapq.heappush(pq, (w, start, v))
