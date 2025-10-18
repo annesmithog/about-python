@@ -1,6 +1,7 @@
 from typing import Any
 
 def greedy_coin_change(amount: int, coins: list[int]) -> list[Any]:
+    """その場で最適な選択を繰り返し解を求める"""
     coins = sorted(coins, reverse=True)
     result: list[int] = []
 

@@ -1,4 +1,5 @@
 def exponential_search(items: list[int], target: int) -> int:
+    """ソート済みの配列で範囲を指数的に広げながら二分探索し要素を探す"""
     n = len(items)
     
     if n == 0: 

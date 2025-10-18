@@ -1,4 +1,5 @@
 def binary_search(items: list[int], target: int) -> int:
+    """ソート済みの配列を二分しながら効率的に要素を探す"""
     left = 0
     right = len(items) - 1
 
