@@ -210,9 +210,9 @@ x = int('7')    # str to int
 ```py
 tpl = ("one", "two", "three")
 tpl_iter = iter(tpl)
-print(next(tpl_iter))   # one 
-print(next(tpl_iter))   # two 
-print(next(tpl_iter))   # three 
+print(next(tpl_iter))   # one
+print(next(tpl_iter))   # two
+print(next(tpl_iter))   # three
 ```
 
 [⬆︎目次に戻る](#目次)
@@ -306,11 +306,11 @@ class BloodType(Enum):
 
     def __str__(self):
         return self.name
-    
+
     @classmethod
     def show_all(cls) -> list[str]:
         return list(map(lambda color: color.value, cls))
-    
+
 print(BloodType.show_all())     # ['A型', 'B型', 'O型', 'AB型']
 ```
 
@@ -394,7 +394,7 @@ output(characters, lambda c: c.upper())     # GOKU, NARUTO, DENJI
 class Human:
     def __init__(self, name) -> None:
         self.name = name
-    
+
     def output(self) -> None:
         print(f"Name: {self.name}")
 ```
@@ -410,11 +410,11 @@ gob.output()    # Name: ゴブリン
 class Human:
     def __init__(self, name) -> None:
         self._name = name
-    
+
     @property
     def name(self):
         return self._name
-    
+
     @name.setter
     def name(self, value):
         if value != "":
@@ -451,11 +451,11 @@ class Date:
 
     def get_date(self):
         return self.date
-    
+
     @staticmethod
     def to_slash_date(d):
         return d.replace("-", "/")
-    
+
 d1 = Date("2025-12-31")
 print(d1.date)                      # 2025-12-31
 d2 = Date.to_slash_date("2025-12-31")
@@ -508,13 +508,13 @@ class Shape(metaclass=ABCMeta):
     @abstractmethod
     def area(self) -> float:
         raise NotImplementedError()
-    
+
 class Rectangle(Shape):
     width: float
     height: float
     def area(self):
         return self.width * self.height
-    
+
 class Circle(Shape):
     radius: float
     def area(self):
@@ -567,7 +567,7 @@ except Exception as e:
 - [高速化](/advanced/speedup/README.md)
 - [入力](/advanced/input/README.md)
 ------------------------------------------------------------------------------
-<!-- 
+<!--
 フレームワーク
 - Pyramid
 - FastAPI
@@ -610,7 +610,7 @@ except Exception as e:
 - OpenCSV
 - Pillow
 - pygame
------------------------------------------------------------------------------- 
+------------------------------------------------------------------------------
 -->
 
 [⬆︎目次に戻る](#目次)
@@ -629,25 +629,25 @@ except Exception as e:
 ## アルゴリズム
 
 探索
-- [線形探索](/src/algorithms/search/linear_search.py) - 配列を先頭から順番に調べて目的の要素を探す
-- [二分探索](/src/algorithms/search/binary_search.py) - ソート済みの配列を二分しながら効率的に要素を探す
-- [指数探索](/src/algorithms/search/exponential_search.py) - ソート済みの配列で範囲を指数的に広げながら二分探索し要素を探す
-- [貪欲法 (例: コイン問題)](/src/algorithms/search/greedy_coin_change.py) - その場で最適な選択を繰り返し解を求める
+- [線形探索](/src/algorithms/search/linear_search.py) - 配列を先頭から順番に調べ、目的の要素の位置を探します。
+- [二分探索](/src/algorithms/search/binary_search.py) - ソート済みの配列を二分しながら効率的に要素を探し、目的の要素の位置を返します。
+- [指数探索](/src/algorithms/search/exponential_search.py) - ソート済みの配列で範囲を指数的に広げながら二分探索し、目的の要素の位置を返します。
+- [貪欲法 (例: コイン問題)](/src/algorithms/search/greedy_coin_change.py) - その場で最適な選択を繰り返し、解を求めます。コイン問題では、用意されたコインの種類と求める合計をもとに必要なコインの種類を返します。
 --------------------------------------------------------------------------------------------------
 ツリー
-- [幅優先探索 (BFS)](/src/algorithms/tree/bfs.py) - キューを使い、根から近い順に探索する
-- [深さ優先探索 (DFS)](/src/algorithms/tree/dfs.py) - スタックや再帰を使い、できる限り深く探索する
+- [幅優先探索 (BFS)](/src/algorithms/tree/bfs.py) - キューを使用して与えられたノードから近いノードを順に探索し、最短経路を返します。
+- [深さ優先探索 (DFS)](/src/algorithms/tree/dfs.py) - スタックや再帰を使用してできる限り深く探索し、到達可能な経路を返します。
 --------------------------------------------------------------------------------------------------
 グラフアルゴリズム
-- [BFSを使用した迷路探索](/src/algorithms/graph/bfs_maze.py) - BFSを使い、最短経路を見つける
-- [DFSを使用した迷路探索](/src/algorithms/graph/dfs_maze.py) - DFSを使い、到達可能な経路を見つける
-- [ダイクストラ法](/src/algorithms/graph/dijkstra.py) - 単一の始点から各頂点への最短経路を求める (負の辺がない場合のみ)
-- [ベルマンフォード法](/src/algorithms/graph/bellman_ford.py) - 単一の始点から各頂点への最短経路を求める (負の辺があっても問題ないが、負閉路は不可)
-- [ワーシャル–フロイド法](/src/algorithms/graph/floyd_warshall.py) - 全ての頂点間の最短経路を求める
-- [プリム法](/src/algorithms/graph/prim.py) - 貪欲方で最小全域木を求める
-- [クラスカル法](/src/algorithms/graph/kruskal.py) - 辺が小さい順に選び最小全域木を求める
-- [トポロジカルソート](/src/algorithms/graph/topological_sort.py) - 有向非巡回グラフのノードを依存関係に従って並べる
-<!-- 
+- [BFSを使用した迷路探索](/src/algorithms/graph/bfs_maze.py) - BFSを使用して最短経路を見つけ、最短距離を返します。
+- [DFSを使用した迷路探索](/src/algorithms/graph/dfs_maze.py) - DFSを使用して到達可能な経路を見つけ、その距離を返します。
+- [ダイクストラ法](/src/algorithms/graph/dijkstra.py) - 負の辺がない場合のみ、単一の始点から各頂点への最短経路を求めて、各地点への最短距離を返します。
+- [ベルマンフォード法](/src/algorithms/graph/bellman_ford.py) - 負の辺があっても問題ないが負閉路の場合以外に限り、単一の始点から各頂点への最短経路を求めて、各地点への最短距離を返します。
+- [ワーシャル–フロイド法](/src/algorithms/graph/floyd_warshall.py) - 全ての頂点間の最短経路を求めて返します。
+- [プリム法](/src/algorithms/graph/prim.py) - 貪欲法で最小全域木を求めて返します。
+- [クラスカル法](/src/algorithms/graph/kruskal.py) - 辺が小さい順に選び、最小全域木を求めて返します。
+- [トポロジカルソート](/src/algorithms/graph/topological_sort.py) - 有向非巡回グラフのノードを依存関係に従って並べ返します。
+<!--
 --------------------------------------------------------------------------------------------------
 ソート
 - [バブルソート](/src/algorithms/sorting/bubble_sort.py) - 隣り合う要素を比較し、必要に応じて入れ替えを繰り返すソート
@@ -659,7 +659,7 @@ except Exception as e:
 - [シェルソート](/src/algorithms/sorting/shell_sort.py) - 挿入ソートを改良し、間隔を縮めながら整列させるソート
 - [カウントソート](/src/algorithms/sorting/counting_sort.py) - 値の範囲が限られている時に有効な非比較ソート
 - [基数ソート](/src/algorithms/sorting/radix_sort.py) - 整数の各桁ごとに処理する安定ソート
--------------------------------------------------------------------------------------------------- 
+--------------------------------------------------------------------------------------------------
 -->
 
 [⬆︎目次に戻る](#目次)
