@@ -22,6 +22,8 @@
 
 ## 前提
 
+**環境** - Python3.13で実行しています。
+
 **出力** - このリポジトリでは、説明のために出力を多く使用します。
 ```py
 print("Hello")
@@ -646,20 +648,18 @@ except Exception as e:
 - [ワーシャル–フロイド法](/src/algorithms/graph/floyd_warshall.py) - 全ての頂点間の最短経路を求めて返します。
 - [プリム法](/src/algorithms/graph/prim.py) - 貪欲法で最小全域木を求めて返します。
 - [クラスカル法](/src/algorithms/graph/kruskal.py) - 辺が小さい順に選び、最小全域木を求めて返します。
-- [トポロジカルソート](/src/algorithms/graph/topological_sort.py) - 有向非巡回グラフのノードを依存関係に従って並べ返します。
-<!--
+- [トポロジカルソート](/src/algorithms/graph/topological_sort.py) - 有向非巡回グラフのノードを依存関係に従って並べて返します。
 --------------------------------------------------------------------------------------------------
 ソート
-- [バブルソート](/src/algorithms/sorting/bubble_sort.py) - 隣り合う要素を比較し、必要に応じて入れ替えを繰り返すソート
-- [選択ソート](/src/algorithms/sorting/selection_sort.py) - 未ソート部分から最小または最大の要素を選び、先頭と交換するソート
-- [挿入ソート](/src/algorithms/sorting/insertion_sort.py) - 適切な位置を見つけて要素を挿入し、部分的に整列させるソート
-- [ヒープソート](/src/algorithms/sorting/heap_sort.py) - ヒープ構造を利用し、効率的に整列させるソート
-- [マージソート](/src/algorithms/sorting/merge_sort.py) - 分割統治法を使用した安定ソート
-- [クイックソート](/src/algorithms/sorting/quick_sort.py) - 分割統治法を使用した不安定だが高速なソート
-- [シェルソート](/src/algorithms/sorting/shell_sort.py) - 挿入ソートを改良し、間隔を縮めながら整列させるソート
-- [カウントソート](/src/algorithms/sorting/counting_sort.py) - 値の範囲が限られている時に有効な非比較ソート
-- [基数ソート](/src/algorithms/sorting/radix_sort.py) - 整数の各桁ごとに処理する安定ソート
+- [バブルソート](/src/algorithms/sorting/bubble_sort.py) - 隣り合う要素を比較しながら必要に応じて入れ替えを繰り返すソートです。
+- [選択ソート](/src/algorithms/sorting/selection_sort.py) - 未ソート部分から最小または最大の要素を選び先頭と交換するソートです。
+- [挿入ソート](/src/algorithms/sorting/insertion_sort.py) - 適切な位置を見つけて要素を挿入し、部分的に整列させるソートです。
+- [ヒープソート](/src/algorithms/sorting/heap_sort.py) - ヒープ構造を利用する効率的なソートです。
+- [マージソート](/src/algorithms/sorting/merge_sort.py) - 分割統治法を利用した安定したソートです。
+- [クイックソート](/src/algorithms/sorting/quick_sort.py) - 分割統治法を利用した不安定で高速なソートです。
+- [シェルソート](/src/algorithms/sorting/shell_sort.py) - 挿入ソートを改良し、間隔を縮めながら整列させるソートです。
+- [カウントソート](/src/algorithms/sorting/counting_sort.py) - 値の範囲が限られている場合に有効な非比較ソートです。
+- [基数ソート](/src/algorithms/sorting/radix_sort.py) - 整数の各桁ごとに処理する安定したソートです。
 --------------------------------------------------------------------------------------------------
--->
 
 [⬆︎目次に戻る](#目次)
