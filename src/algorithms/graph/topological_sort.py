@@ -7,7 +7,7 @@ class CycleError(Exception):
 Graph = dict[str, list[str]]
 
 def topological_sort(graph: Graph) -> list[str]:
-    """有向非巡回グラフのノードを依存関係に従って並べ返します。
+    """有向非巡回グラフのノードを依存関係に従って並べて返します。
     Args:
         graph (Graph): グラフ
     Raises:
