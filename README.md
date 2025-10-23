@@ -53,7 +53,7 @@ age = 21
 
 ## 定数
 
-Pythonでは、**定数は言語仕様として存在しません**！！しかし、慣例として大文字変数で表現します。
+Pythonでは、**定数は言語仕様として存在しません**！！しかし、慣例として大文字とアンダースコアで表現します。
 
 ```py
 PI = 3.14
@@ -82,24 +82,49 @@ i = 0
 while (i < 5):
     print(i)
     i += 1
+else:
+    print("END OF CODE")
 ```
 
 `for` - ループ処理
 ```py
 nums = [10, 20, 30]
 
+# 配列を出力 (他のコンテナも同様に出力可能)
 for num in nums:
     print(num)  # 10, 20, 30
+
+# 範囲を出力
 for i in range(4):
     print(i)    # 0, 1, 2, 3
+
+# 範囲を出力 (指定値からスタート)
+for i in range(1, 5):
+    print(i)    # 1, 2, 3, 4
+
+# 範囲を出力 (間隔を使用)
+for i in range(1, 5, 2):
+    print(i)    # 1, 3
+
+# 文字列を１文字ずつ出力
 for c in "CHAR":
     print(c)    # C, H, A, R
+
+# インデックス＋配列を出力
 for index, num in enumerate(nums):
     print(f"{index}=>{num}")   # 0=>10, 1=>20, 2=>30
-```
 
-`for`の結果を使用しない場合の習慣として、`_`に代入する方法があります。
-```py
+# ファイルを一行ずつ出力
+for line in open("sample.txt"):
+    print(line, end="")
+
+# ループの最後にelseを実行
+for i in range(3):
+    print(i)
+else:
+    print("END OF FOR") # 0, 1, 2, END OF FOR
+
+# 代入しない場合`_`を使用
 for _ in range(3):  # `_`自体は普通に使える...
     print("Hello")
 ```
@@ -119,9 +144,21 @@ match score:
         print("Dunno")
 ```
 
-`break` - 繰り返し処理の強制終了
+`del` - オブジェクトを削除します。
+```py
+s = "Hello"
+del s
+```
 
-`continue` - 繰り返し処理のスキップ
+`exec` - 文字列をスクリプトとして実行します。
+```py
+s = "print('This is exec.')"
+exec(s)
+```
+
+`break` - 繰り返し処理を強制終了します。
+
+`continue` - 繰り返し処理をスキップします。
 
 [⬆︎目次に戻る](#目次)
 
@@ -160,7 +197,17 @@ print("Konichiwa" if country == "en" else "Hello")
 s = "ABCDEF"
 
 if (x := len(s)) > 5:
-    print("Wow!")
+    print("Wow!")       # Wow!
+print(x)                # 6
+```
+
+**算術演算**
+```py
+a = 5
+b = 2
+print(a % b)    # a/bの余り: 1
+print(a ** b)   # aのb乗: 25
+print(a // b)   # 切り捨て除算: 2
 ```
 
 **集合演算**
@@ -322,7 +369,7 @@ print(BloodType.show_all())     # ['A型', 'B型', 'O型', 'AB型']
 
 **関数**
 ```py
-def sum(a, b):
+def sum(a: int, b: int) -> int:
     return a + b
 
 print(sum(10, 20))  # 30
@@ -330,16 +377,16 @@ print(sum(10, 20))  # 30
 
 `*args` - 可変長引数です。
 ```py
-def output(*args):
+def output(*args: str) -> None:
     for arg in args:
         print(arg)
 
-print("Hi", "Im", "Anne")   # Hi Im Anne
+output("Hi", "Im", "Anne")   # Hi\n Im\n Anne\n
 ```
 
 `**kwargs` - 可変長のキーワード引数です。
 ```py
-def output(**kwargs):
+def output(**kwargs: str|int) -> None:
     for key, value in kwargs.items():
         print(f"{key}=>{value}")
 
@@ -348,7 +395,7 @@ output(name="Anne", age=21) # name=>Anne, age=>21
 
 **キーワードのみ引数** - `*`の後ろに定義した引数にキーワード指定を強制します。
 ```py
-def hello(name, *, has_exclamation):
+def hello(name: str, *, has_exclamation: bool) -> None:
     exclamation = ""
     if has_exclamation:
         exclamation = "!!!"
@@ -362,7 +409,7 @@ hello("Anne", True)                     # エラー
 **デコレータ** - オブジェクト構造を変更せずに既存のオブジェクトに新しい機能を追加できます。
 ```py
 def hiding(f):
-    def wrapper(txt: str):
+    def wrapper(txt: str) -> str:
         bad_words = ["fuck", "bitch", "ass", "shit"]
         for bad_word in bad_words:
             txt = txt.replace(bad_word, "*" * len(bad_word))
@@ -371,7 +418,7 @@ def hiding(f):
     return wrapper
 
 @hiding
-def chant(quote):
+def chant(quote: str) -> None:
     print(quote)
 
 chant("Ayo fuck you bitch ass bro") # Ayo **** you ***** *** bro
@@ -436,7 +483,7 @@ class Human:
     greet = "HELLO"
 
     @classmethod
-    def greeting(cls):
+    def greeting(cls) -> None:
         print(cls.greet)
 
 Human.greeting()        # HELLO
@@ -448,14 +495,14 @@ print(Human.greet)      # こんにちは
 **静的メソッド** - インスタンスやクラスに依存しません。継承クラスでも同じ動作を期待する場合に用いられます。
 ```py
 class Date:
-    def __init__(self, date) -> None:
+    def __init__(self, date: str) -> None:
         self.date = date
 
     def get_date(self):
         return self.date
 
     @staticmethod
-    def to_slash_date(d):
+    def to_slash_date(d: str) -> str:
         return d.replace("-", "/")
 
 d1 = Date("2025-12-31")
@@ -467,13 +514,13 @@ print(d2)                           # 2025/12/31
 **継承** - クラスを継承できます。以下の例にはオーバーライドが含まれます。
 ```py
 class Animal:
-    def __init__(self, name) -> None:
+    def __init__(self, name: str) -> None:
         self.name = name
     def speak(self):
         print(f"私の名前は{self.name}です。")
 
 class Dog(Animal):
-    def __init__(self, name, type):
+    def __init__(self, name: str, type: str):
         super().__init__(name)
         self.type = type
     def speak(self):
@@ -490,7 +537,7 @@ dog.speak()
 - `__repr__(self)` - オブジェクトを表す公式の文字列を計算して返します。基本はデバッグに使用します。
 ```py
 class Animal:
-    def __init__(self, name) -> None:
+    def __init__(self, name: str) -> None:
         self.name = name
     def __repr__(self):
         return f"Animal(Name: {self.name})"
